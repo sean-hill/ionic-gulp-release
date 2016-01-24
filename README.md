@@ -52,7 +52,7 @@ After the command is finished, you'll need to open Xcode to finish the release p
 	
 	$ gulp android-release
 	
-After the command is finished, an `android-arm7-release-signed.apk` and `android-x86-release-signed.apk` will have been built. Use these two files to upload your Android app to Google Play. They can be found at `./platforms/android/build/outputs/apk`. To upload both to Google Play you'll need to switch to Advanced Mode via their web interface.
+After the command is finished, an `android-arm7-release-signed.apk` and `android-x86-release-signed.apk` will have been built. Use these two files to upload your Android app to Google Play. They can be found at `./platforms/android/build/outputs/apk`. To upload both apks to Google Play you'll need to switch to Advanced Mode via their web interface.
 
 ## Summary
 
