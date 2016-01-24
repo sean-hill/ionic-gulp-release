@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Ionic release commands by sean-hill</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Ionic release commands</h1>
+      <h2 class="project-tagline">A few gulp commands to simplify your Ionic app release pocess</h2>
+      <a href="https://github.com/sean-hill/ionic-gulp-release" class="btn">View on GitHub</a>
+      <a href="https://github.com/sean-hill/ionic-gulp-release/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/sean-hill/ionic-gulp-release/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies</h1>
+
+<pre><code>1. An Ionic project
+2. iOS and Android platforms added to your project
+3. Crosswalk plugin added to your project 
+</code></pre>
+
+<h1>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h1>
+
+<ol>
+<li>Copy the contents from the <code>gulp-commands.js</code> file provided in this repo into your project's <code>gulpfile.js</code>.</li>
+<li>
+<p>Install the required npm modules from the root of your project.</p>
+
+<pre><code>$ npm install --save-dev gulp run-sequence shelljs async
+</code></pre>
+</li>
+<li>
+<p>Require the modules at the top of your <code>gulpfile.js</code>.</p>
+
+<pre><code>var gulp = require('gulp');
+var sh = require('shelljs');
+var async = require('async');
+var path = require('path')
+var spawn = require('child_process').spawn;
+var runSequence = require('run-sequence');
+</code></pre>
+</li>
+</ol>
+
+<h1>
+<a id="getting-started" class="anchor" href="#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting Started</h1>
+
+<p>These gulp commands make it very simple to build release candidates for your iOS and Android versions of your Ionic app. </p>
+
+<ol>
+<li>
+<p>Create a <code>keystore</code> file. </p>
+
+<ul>
+<li>The <code>keytool</code> command is required for this step.</li>
+<li>
+<p>Replace <code>YOUR_APP.keystore</code> with something like <code>my-cool-app.keystore</code> and <code>YOUR_ALIAS</code> with something like <code>MY_COOL_ALIAS</code>. </p>
+
+<pre><code>$ cd ~/path/to/your/ionic/app
+$ keytool -genkey -v -keystore YOUR_APP.keystore -alias YOUR_ALIAS -keyalg RSA -keysize 2048 -validity 10000
+</code></pre>
+</li>
+<li><p>This process will require a password. <strong>Make sure you remember this password.</strong> </p></li>
+<li>After following the prompts, this will generate a <code>YOUR_APP.keystore</code> file at the root of your Ionic app's directory that we'll use later.</li>
+</ul>
+</li>
+<li><p>Open your <code>gulpfile.js</code> file.</p></li>
+<li>Replace <code>YOUR_APP.keystore</code> with the name of your <code>.keystore</code> file and <code>YOUR_ALIAS</code> with the alias name you used previously. </li>
+<li>Replace <code>YOUR_PASSWORD</code> with the password you used to create your <code>.keystore</code> file.</li>
+</ol>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h1>
+
+<p>To use these gulp commands, <code>zipalign</code> and <code>jarsigner</code> must be available from the command line. If they are not, search the web to install them on your machine.</p>
+
+<h2>
+<a id="ios" class="anchor" href="#ios" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>iOS</h2>
+
+<pre><code>$ gulp ios-release
+</code></pre>
+
+<p>After the command is finished, you'll need to open Xcode to finish the release process.</p>
+
+<h2>
+<a id="android" class="anchor" href="#android" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Android</h2>
+
+<pre><code>$ gulp android-release
+</code></pre>
+
+<p>After the command is finished, an <code>android-arm7-release-signed.apk</code> and <code>android-x86-release-signed.apk</code> will have been built. Use these two files to upload your Android app to Google Play. They can be found at <code>./platforms/android/build/outputs/apk</code>. To upload both apks to Google Play you'll need to switch to Advanced Mode via their web interface.</p>
+
+<h2>
+<a id="summary" class="anchor" href="#summary" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Summary</h2>
+
+<p>These gulp commands make it so you don't have to manually run the commands found <a href="http://ionicframework.com/docs/guide/publishing.html">here</a> everytime you want to publish your Android app. A HUGE TIME SAVER.</p>
+
+<p>Also included in <code>gulp-commands.js</code> is <code>$ gulp iossim</code> and <code>$ gulp androidsim</code>. Two other commands that I use to emulate my app.</p>
+
+<p>I hope this helps you Ionicites with your build process! If you have any questions feel free to email me at <a href="mailto:me@seanhill.info">me@seanhill.info</a>.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/sean-hill/ionic-gulp-release">Ionic release commands</a> is maintained by <a href="https://github.com/sean-hill">sean-hill</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
