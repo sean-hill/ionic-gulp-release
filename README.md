@@ -25,14 +25,14 @@
 These gulp commands make it very simple to build release candidates for your iOS and Android versions of your Ionic app. 
 
 1. Create a `keystore` file. 
-	a. The `keytool` command is required for this step.
-	b. Replace `YOUR_APP.keystore` with something like `my-cool-app.keystore` and `YOUR_ALIAS` with something like `MY_COOL_ALIAS`. 
+	* The `keytool` command is required for this step.
+	* Replace `YOUR_APP.keystore` with something like `my-cool-app.keystore` and `YOUR_ALIAS` with something like `MY_COOL_ALIAS`. 
 
 			$ cd ~/path/to/your/ionic/app
 			$ keytool -genkey -v -keystore YOUR_APP.keystore -alias YOUR_ALIAS -keyalg RSA -keysize 2048 -validity 10000
 
-	c. This process will require a password. **Make sure you remember this password.** 
-	d. After following the prompts, this will generate a `YOUR_APP.keystore` file at the root of your Ionic app's directory that we'll use later.
+	* This process will require a password. **Make sure you remember this password.** 
+	* After following the prompts, this will generate a `YOUR_APP.keystore` file at the root of your Ionic app's directory that we'll use later.
 
 2. Open your `gulpfile.js` file.
 3. Replace `YOUR_APP.keystore` with the name of your `.keystore` file and `YOUR_ALIAS` with the alias name you used previously. 
