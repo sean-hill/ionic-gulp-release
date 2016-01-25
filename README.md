@@ -1,8 +1,8 @@
 # Dependencies
 
-	1. An Ionic project
-	2. iOS and Android platforms added to your project
-	3. Crosswalk plugin added to your project 
+1. An Ionic project
+2. iOS and Android platforms added to your project
+3. Crosswalk plugin added to your project 
 
 # Installation
 
